@@ -9,8 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.ares.okhttplibrary.OkHttpManager;
-
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -41,7 +39,9 @@ public class MainActivity extends AppCompatActivity implements Callback{
 
         imageView = (ImageView) findViewById(R.id.iv_http);
 
-        OkHttpManager.getInstance().getAsynHttp("http://192.168.16.224:8080/AresServer/images/20160227.png",this);
+//        OkHttpManager.getInstance().getAsynHttp("http://192.168.16.224:8080/AresServer/images/20160227.png",this);
+//        OkHttpManager.getInstance().getAsynHttp("http://192.168.16.224:8080/AresServer/file/hello.txt",this);
+
     }
 
     @Override
@@ -53,13 +53,14 @@ public class MainActivity extends AppCompatActivity implements Callback{
     public void onResponse(Call call, Response response) throws IOException {
         if (response.isSuccessful()) {
             if (response.body() != null) {
-                Log.e("Request Success",response.body().byteStream()+"");
+//                Log.e("Request Success",response.body().byteStream()+"");
+                Log.e("Request Success",response.body().string());
 
-                byte[] bytes = response.body().bytes();
-                Message message = new Message();
-                message.what = 1;
-                message.obj = bytes;
-                handler.sendMessage(message);
+//                byte[] bytes = response.body().bytes();
+//                Message message = new Message();
+//                message.what = 1;
+//                message.obj = bytes;
+//                handler.sendMessage(message);
             }
         }
     }
